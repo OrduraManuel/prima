@@ -1,0 +1,30 @@
+
+@function calcColor($color, $perc: 5) {
+    @if (lightness($color) >= 50) {
+      @return darken($color, $perc);
+    } @else {
+      @return lighten($color, $perc);
+    }
+  }
+  
+  @function textColor($color, $dark: #000, $light: #fff) {
+    @if (lightness($color) >= 50) {
+      @return $dark;
+    } @else {
+      @return $light;
+    }
+  }
+  
+  /* FUNZIONE PER ALTERNANZA LOGO CON SFONDO CHIARO O SCURO
+  
+  @function logo-color($color, $dark: #000, $light: #fff) {
+      @if (lightness($color) >= 50) {
+          @return $logo-positive;   <---SFONDOCHIARO------ INSERIRE NELLE VARIABILI PATH GENERICA DELLA RICEZIONE LOGO NORMALE
+      }
+      @else{
+          @return $logo-negative;   <---SFONDOSCURO------ INSERIRE NELLE VARIABILI PATH GENERICA DELLA RICEZIONE LOGO NEGATIVO
+      }
+  }
+  
+  */
+  

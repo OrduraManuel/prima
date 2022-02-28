@@ -1,0 +1,95 @@
+
+/* 1.2 dpr */ // SAMSUNG S10 Plus ( elisa )
+@media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 100dpi) {
+  html,
+  body {
+    font-size: 12px;
+  }
+}
+
+/* 1.3 dpr */
+@media (-webkit-min-device-pixel-ratio: 1.3), (min-resolution: 124.8dpi) {
+  html,
+  body {
+    font-size: 14px;
+  }
+}
+
+/* 1.5 dpr */ // IPAD PRO
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  html,
+  body {
+    font-size: 15px;
+  }
+  #main .filterBar {
+    font-size: 15px;
+  }
+}
+
+/* Smartphone piccole dimensioni  */
+@media only screen and (max-width: 400px) {
+  html,
+  body {
+    font-size: 10px;
+    input,
+    select {
+      font-size: 100%;
+    }
+  }
+}
+
+/* Smartphone grandi dimensioni  */
+@media only screen and (min-width: 400px) and (max-width: 481px) {
+  html,
+  body {
+    font-size: 10.5px;
+    input,
+    select {
+      font-size: 100%;
+    }
+  }
+}
+
+/* Tablet  */
+@media only screen and (min-width: 481px) and (max-width: 992px) {
+  html,
+  body {
+    font-size: 12px;
+    input,
+    select {
+      font-size: 100%;
+    }
+  }
+}
+/* Laptop */
+@media all and (min-width: 993px) {
+  html,
+  body {
+    font-size: 14px;
+  }
+}
+/* Laptop grandi dimensioni */
+@media all and (min-width: 1400px) {
+  html,
+  body {
+    font-size: 15px;
+  }
+
+  /*  .cookie{
+          width: 50%;
+        } */ // LA PROVA CHE SI PUO MODIFICARE UNA CLASSE IN QUESTO METODO
+}
+/* Desktop */
+@media all and (min-width: 1690px) {
+  html,
+  body {
+    font-size: 16px;
+  }
+}
+/* Desktop grandi dimensioni */
+@media all and (min-width: 1900px) {
+  html,
+  body {
+    font-size: 17px;
+  }
+}

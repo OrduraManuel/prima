@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "swistblnk_monthoersregular";
+    src: url("/assets/font/monthoers-webfont.woff2")
+        format("woff2"),
+      url("/assets/font/monthoers-webfont.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+@import "function.scss";
+@import "variables.scss";
+@import "fontawesome.scss";
+@import "components/layout.scss";
+
+*{
+ margin: 0;
+ padding:0;
+ box-sizing: border-box;
+ font-family: 'Poppins', sans-serif;       
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  background-color: whitesmoke;
+  
+}
+

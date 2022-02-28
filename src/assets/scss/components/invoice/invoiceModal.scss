@@ -1,0 +1,41 @@
+.invoiceModal{
+    background-color: white;
+    color: purple;
+    padding: 3% 3%;
+    label{
+        margin-right: 2%;
+        margin-bottom: 1%;
+    }
+    input,select{
+        border-radius: 35px;
+        border: none;
+        background-color: whitesmoke;
+        -webkit-box-shadow: inset 0px 0px 15px -1px #0000005d; 
+        box-shadow: inset 0px 0px 15px -1px #0000005d;
+        
+    }
+    .billFrom,.billTo,.invoiceWork{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .input{
+            display: flex;
+            flex-direction: column;
+            #biller-streetAddress{
+                max-width: 50%;
+            }
+        }
+        .locationDetails,.payment{
+            margin-top:1%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            .input{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+
+
+}
