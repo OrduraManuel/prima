@@ -1,0 +1,36 @@
+.NavigationMobile{
+    background-color: $bgPrimary;
+    padding: 0 2rem;
+    height: 10vh;
+    position: fixed;
+    top: 90vh;
+    right: 0;
+
+    ul{
+        width: 100%;
+        padding:0 0;
+        margin-bottom:0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        a{
+            margin-left: 0rem;
+            padding: 0 1rem;
+            text-decoration: none;
+            @include delay(slideInUp, 4, .5s);
+        }
+        i{
+            
+            font-size: 1.2rem;
+            color: textColor($bgPrimary, $dark, $light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            span{
+                padding: 1rem 0rem;
+            }
+        }
+    }
+}

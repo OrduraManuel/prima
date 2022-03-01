@@ -1,91 +1,149 @@
 <template>
-  <div class="home col-md-6 mx-auto ">
-    <ul>
-      <li v-for="book in books" :key="book.id">
-        <div class="forContent" >
-          <div class="details">
-            <h3 @click="handleDelete(book)">{{ book.title }}</h3>
-            <p>By {{ book.author }} </p>
-          </div>
-          <div v-for="place in places" :key="place.id" class=" mx-2">
-            <div v-if="book.local == place.id">
-              {{place.local}}
+<div class="container">
+  <div class="row home">
+    <div class="containerTasks containerForm">
+      <CreateTaskForm />
+    </div>
+    <div class="containerTasks containerProgress">
+      <p class="headingTasks">In Progress</p>
+      <li v-for="task in tasks" :key="task.id" v-show="!task.taskDone" class="lobbyTask">
+          <div class="forContent" v-if="!task.taskDone">
+            <div class="details d-flex">
+              <i :class="{icon: true, 'fas': task.taskDone, 'far': !task.taskDone }" 
+                  class="fa-check-square  my-auto mx-2" 
+                  @click="handleUpdate(task, 'tasks', 'taskDone')"></i>
+              <i :class="{icon: true, 'fas': task.taskPriority, 'far': !task.taskPriority }" 
+                  class="fa-circle my-auto mx-2" @click="handleUpdate(task, 'tasks', 'taskPriority')"></i>
+              <p class="ml-2" @click="testone(task)">{{ task.taskTitle }}</p>
+            </div>
+            <div class="toggling">
+              <i class="far fa-trash-alt my-auto mx-2" 
+              @click="handleDelete(task)"></i>
             </div>
           </div>
+      </li>
+    </div>
+    <div class="containerTasks containerDone">
+      <h6 class="headingTasks">Done</h6>
+      <li v-for="task in tasks" :key="task.id" v-show="task.taskDone" class="lobbyTask">
+        <div class="forContent"  v-if="task.taskDone">
+          <div class="details d-flex">
+            <i :class="{icon: true, 'fas': task.taskDone, 'far': !task.taskDone }" 
+                class="fa-check-square  my-auto mx-2" 
+                @click="handleUpdate(task, 'tasks', 'taskDone')"></i>
+            <i :class="{icon: true, 'fas': task.taskPriority, 'far': !task.taskPriority }" 
+                class="fa-circle my-auto mx-2" @click="handleUpdate(task, 'tasks', 'taskPriority')"></i>
+            <p class="ml-2" @click="testone(task)">{{ task.taskTitle }}</p>
+          </div>
           <div class="toggling">
-            <i :class="{icon: true, 
-            'fas': book.isFav, 'far': !book.isFav }" 
-            class="fa-heart my-auto" @click="handleUpdate(book, 'books', 'isFav')"></i>
-
-            <i :class="{icon: true, 
-            'fa-eye': book.isRead, 'fa-eye-slash': !book.isRead }" 
-            class="far my-auto" @click="handleUpdate( book, 'books', 'isRead')"></i>
+            <i class="far fa-trash-alt my-auto mx-2" 
+            @click="handleDelete(task)"></i>
           </div>
         </div>
-        <div class="notes bg-warning p-2" v-if="book.notes">
-          <span > {{ book.notes }} </span>
-        </div> 
       </li>
-
-    </ul>
-    <CreateBookForm />
+    </div>
   </div>
+</div>
 </template>
 
 <script>
 
-import CreateBookForm from '@/components/book/CreateBookForm'
+import CreateTaskForm from '@/components/task/CreateTaskForm'
 import getCollection from '@/api/getCollection'
 // firebase imports
 
 import { db } from '@/api/config'
-import { doc, deleteDoc, updateDoc} from 'firebase/firestore'
+import { doc, deleteDoc, updateDoc } from 'firebase/firestore'
 
 export default {
   name: 'Home',
-  components: { CreateBookForm },
+  components: { CreateTaskForm },
+  computed : {
+    dotDescr(value){
+      if(value.length > 10){
+        return value.substring(0,10) + '...'
+      }else{
+        return value
+      }
+    },
+    testone(el){
+      return console.log(el, 'stramonazza')
+    }
+  },
   setup() {
-    const { documents: books } = getCollection('books')
-    const { documents: places } = getCollection('places')
+    const { documents: tasks } = getCollection('tasks') 
 
-    const handleDelete = (book) => {
-      const docRef = doc(db, 'books', book.id)
+    const handleDelete = (task) => {
+      const docRef = doc(db, 'tasks', task.id)
       deleteDoc(docRef)
     }
     const handleUpdate = function(cutMatrice, matrice, args) {
       const docRef = doc(db, matrice, cutMatrice.id) // docRef di Firebase db (importato) + dbMatrice + idMatrice
       function stepDocs(){
-        if(args == 'isFav'){
+        if(args == 'taskPriority'){
           updateDoc(docRef , { 
-            isFav: !cutMatrice.isFav
+            taskPriority: !cutMatrice.taskPriority
           })
-        }
-        if(args == 'isRead'){
+        }if(args == 'taskDone'){
           updateDoc(docRef , { 
-            isRead: !cutMatrice.isRead
+            taskDone: !cutMatrice.taskDone
           })
         }else(console.log('nient'))
       }
       stepDocs()
     }
-    return {books, places, handleDelete,  handleUpdate}
+
+    return {tasks, handleDelete, handleUpdate}
   }
+
 }
 </script>
 <style scoped>
+
 .fas{
   color: red!important;
   transform: scale(1.5);
   padding: 0% 2%;
 }
-.fa-eye{
+.fas.fa-check-square {
   color: green!important;
-  transform: scale(1.5);
-  padding: 0% 2%;
 }
 .far{
   transform: scale(1.5);
   padding: 0% 2%;
+  position: relative;
+}
+.far.fa-check-square:after{
+  content:'';
+  position:absolute;
+  transform: translate(-50%, 50%);
+  top:0%;
+  right:30%;
+  width: 20%;
+  height:50%;
+  background: #141B2C; 
+  transition: all .25s;
+}
+.far.fa-check-square:hover:after{
+  background: #c7c9cf;
+  top:-25%;
+  right:25%;
+  width: 25%;
+  height:75%;
+  cursor: pointer;
+  transition: all .4s;
+}
+.far.fa-cirle:after{
+  content:'';
+  position:absolute;
+  transform: translate(-50%, -50%);
+  top:50%;
+  right:20%;
+  width: 30%;
+  height:30%;
+  background: red;
+  transition: all .25s;
 }
 
 </style>
+

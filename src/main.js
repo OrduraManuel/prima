@@ -14,3 +14,4 @@ onAuthStateChanged(auth, () => {
     app = createApp(App).use(router).mount('#app')
   }
 })
+

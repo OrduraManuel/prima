@@ -1,11 +1,7 @@
 @import "home.scss";
 @import "Navigation.scss";
-@import "navBar.scss";
-@import "navBarMobile.scss";
-@import "latestWork.scss";
+@import "NavigationMobile.scss";
 
 
-@import "invoice/invoiceHeader.scss";
-@import "invoice/invoiceModal.scss";
-
-@import "book/createBookForm.scss";
+@import "task/createTaskForm.scss";
+@import "task/lobbyTask.scss";

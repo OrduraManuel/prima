@@ -1,21 +1,6 @@
 <template>
-  <div class="Navigation">
-    <nav>
-      <div class="heading px-3">
-        <h1>My Track</h1>
-        <!-- logged in users -->
-        <div v-if="user">
-          <p v-if="user">logged in as {{ user.email }}</p>
-          <router-link to="/">Home</router-link>
-          <button @click="handleClick">Logout</button>
-        </div>
-        <!-- logged out users -->
-        <div v-if="!user">
-          <router-link to="/login">Login</router-link>
-          <router-link to="/signup">Signup</router-link>
-        </div>
-      </div>
-        <div class="navItem">
+    <nav class="navbar NavigationMobile">
+        <div class="container-fluid navItems my-auto">
           <ul class="">
             <router-link tag="li" to="/Dashboard"> 
               <i class="fas  fa-1x fa-th-large">
@@ -39,13 +24,7 @@
             </router-link>
           </ul>
         </div>
-        
-    </nav>
-
-    <!-- show user email -->
-    
-  </div>
-
+    </nav>    
 </template>
 
 <script>
@@ -71,28 +50,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.Navigation nav {
-  display: flex;
-  align-items: center;
-}
-.Navigation nav h1 {
-  margin-right: auto;
-  margin-bottom: 0;
-}
-.Navigation nav a {
-  margin-left: 16px;
-  color: #2c3e50;
-}
-.Navigation nav button {
-  margin-left: 16px;
-}
-.Navigation nav a.router-link-exact-active {
-  color: #0ec58e;
-}
-.Navigation nav + p {
-  margin-top: 0;
-  margin-bottom: 30px;
-}
-</style>

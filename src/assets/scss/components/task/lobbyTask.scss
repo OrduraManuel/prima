@@ -1,0 +1,71 @@
+.lobbyTask{
+        font-size: 1.4rem;
+        @include delay(fadeInRight, 10, .5s);
+        display: flex;
+        align-items: center;
+        background: $bgPrimary;
+        color: calcText($bgPrimary, $dark, $light);
+        border-radius: $borderRadius;
+        padding: 3% 2%;
+        margin: 4% 2%;
+        -webkit-box-shadow: $boxShadow; 
+        box-shadow: $boxShadow;
+        transition: all .3s ease-in-out;
+        .forContent{
+            display:flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            .details {
+                margin-right: auto;
+                width: 80%;
+                p {
+                    color: textColor($bgPrimary, $dark, $light);
+                    margin: 0;
+                }
+                i{
+                    font-size: 1rem;
+                }
+                .fa-circle{
+                    font-size: .5rem;
+                    color: lighten($bgSecondary, 10);
+                }
+                .fa-circle-alt{
+                    color: purple;
+                }
+
+            } 
+            .toggling{
+                display:none;
+                animation-duration: .3s;
+                animation: fadeOutRight;
+                i{
+                    font-size: 1rem;
+                }
+            }
+        }
+        &:hover{
+            .toggling{
+                display: flex;
+                align-items: center;
+                animation: fadeInUp;
+                animation-duration: .6s;
+                .far{
+                    color: red;
+                }
+            }
+        }
+        i{
+            color: #bbbbbb;
+            cursor: pointer;
+        }
+        &:hover{
+            transition: all .2s ease-in-out;
+            transform: scale(1.05);
+            -webkit-box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.05); 
+            box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+    }
+

@@ -24,7 +24,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: whitesmoke;
-  
+  background: $bgSecondary;
+  height: 100vh;
+  overflow-x: hidden;
 }
 

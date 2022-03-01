@@ -1,11 +1,11 @@
 <template>
     <div class="col-lg-6 mx-auto">
-        <CreateBookForm />
+        <CreateTaskForm />
     </div>
 </template>
 <script>
 
-import CreateBookForm from '@/components/book/CreateBookForm'
+import CreateTaskForm from '@/components/task/CreateTaskForm'
 import getCollection from '@/api/getCollection'
 // firebase imports
 
@@ -14,24 +14,24 @@ import { doc, deleteDoc, updateDoc} from 'firebase/firestore'
 
 export default {
   name: 'Dashboard',
-  components: { CreateBookForm },
+  components: { CreateTaskForm },
   setup() {
-    const { documents: books } = getCollection('books')
+    const { documents: tasks } = getCollection('tasks')
     const { documents: places } = getCollection('places')
 
-    const handleDelete = (book) => {
-      const docRef = doc(db, 'books', book.id)
+    const handleDelete = (task) => {
+      const docRef = doc(db, 'tasks', task.id)
       deleteDoc(docRef)
     }
 
-    const handleUpdate = (book) => {
-      const docRef = doc(db, 'books', book.id)
+    const handleUpdate = (task) => {
+      const docRef = doc(db, 'tasks', task.id)
       updateDoc(docRef, {
-        isFav: !book.isFav
+        taskPriority: !task.taskPriority
       })
     }
 
-    return {books,places, handleDelete, handleUpdate}
+    return {tasks,places, handleDelete, handleUpdate}
   }
 }
 </script>

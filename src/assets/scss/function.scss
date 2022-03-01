@@ -14,6 +14,17 @@
       @return $light;
     }
   }
+
+  // @include delay(slideInDown, 3, 1s); 
+@mixin delay($name, $number, $value) {
+  @for $i from 1 to ($number + 1) {
+    &:nth-child(#{$i}) {
+      animation: #{$name}!important;
+      -webkit-animation-duration: (#{$i*$value})!important;
+      animation-duration: (#{$i*$value})!important;
+    }
+  }
+}
   
   /* FUNZIONE PER ALTERNANZA LOGO CON SFONDO CHIARO O SCURO
   

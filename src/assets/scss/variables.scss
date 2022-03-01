@@ -1,26 +1,32 @@
 /* variabili base calc  */
 
-$textDark: #000;
-$textLight: #fff;
+$dark: #141B2C;
+$light: #CBDDF0;
 
-$dark: #000;
-$light: #fff;
+$borderRadius: 15px;
 
-$border-radius-35: 35px;
+$bgPrimary: #141B2C;
+$bgSecondary: lighten(#141B2C, 10);
 
-$lemonHaze-Low: yellow;
-$lemonHaze-Mid: rgb(161, 184, 8);
+$textPrimary: #CBDDF0;
 
-/* breakpoints Bootstrap4 shortcut */
+$boxShadow: 0px 0px 18px -1px rgba(0,0,0,0.44);
+$boxShadowHover: 0px 0px 18px -1px rgba(0,0,0,0);
 
-$minXl: "min-width: 1139px";
-$maxXl: "max-width: 1141px";
+/* breakpoints Bootstrap5 shortcut */
 
-$minLg: "min-width: 959px";
-$maxLg: "max-width: 961px";
+$minXxl: "min-width: 1400px";
 
-$minMd: "min-width: 719px";
-$maxMd: "max-width: 721px";
+$minXl: "min-width: 1200px";
+$maxXl: "max-width: 1399px";
 
-$minSm: "min-width: 539px";
-$maxSm: "max-width: 541px";
+$minLg: "min-width: 992px";
+$maxLg: "max-width: 1199px";
+
+$minMd: "min-width: 768px";
+$maxMd: "max-width: 991px";
+
+$minSm: "min-width: 576px";
+$maxSm: "max-width: 767px";
+
+$maxXs: "max-width: 575px";
