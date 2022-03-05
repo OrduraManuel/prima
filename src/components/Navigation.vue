@@ -1,43 +1,46 @@
 <template>
-  <div class="Navigation">
+  <div class="Navigation" v-if="ready">
     <nav>
       <div class="heading px-3">
         <h1>My Track</h1>
-        <!-- logged in users -->
-        <div v-if="user">
-          <p v-if="user">logged in as {{ user.email }}</p>
-          <router-link to="/">Home</router-link>
-          <button @click="handleClick">Logout</button>
-        </div>
-        <!-- logged out users -->
-        <div v-if="!user">
-          <router-link to="/login">Login</router-link>
-          <router-link to="/signup">Signup</router-link>
-        </div>
       </div>
+      <Loggedin class="my-4"/>
         <div class="navItem">
           <ul class="">
             <router-link tag="li" to="/Dashboard"> 
-              <i class="fas  fa-1x fa-th-large">
-                <span class="mx-4">Dashboard</span>
+              <i class="fas fa-1x fa-th-large">
               </i> 
+              <span class="mx-4 d-flex justify-content-center">Dashboard </span>
+              <div class="info px-2">{{tasks.filter(task => task.taskDone == true).length}}/{{tasks.length}}</div>
             </router-link>
             <router-link tag="li" to="/Calendar"> 
               <i class="fas  fa-calendar-alt">
-                <span class="mx-4">Calendar</span>
+               
               </i> 
+               <span class="mx-4">Calendar</span>
             </router-link>
             <router-link tag="li" to="/Teams"> 
               <i class="fas  fa-users">
-                <span class="mx-4">Teams</span>
+                
               </i> 
+              <span class="mx-4">Teams</span>
             </router-link>
             <router-link tag="li" to="/Charts"> 
               <i class="fas  fa-chart-pie-alt">
-                <span class="mx-4">Charts</span>
+                
               </i> 
+              <span class="mx-4">Charts</span>
+            </router-link>
+            <router-link tag="li" to="/Setting" class="mt-auto"> 
+              <i class="fas  fa-cog">
+                
+              </i> 
+              <span class="mx-4">Setting</span>
             </router-link>
           </ul>
+          
+
+           
         </div>
         
     </nav>
@@ -49,26 +52,24 @@
 </template>
 
 <script>
-import getUser from '../methods/getUser'
-import { useRouter } from 'vue-router'
-import { watchEffect } from 'vue'
-// firebase imports
-import { auth } from '@/api/config'
-import { signOut } from 'firebase/auth'
+
+import getCollection from '@/api/getCollection'
+// User imports
+import Loggedin from '@/components/Loggedin'
+
 export default {
   setup() {
-    const { user } = getUser()
-    const router = useRouter()
-    const handleClick = () => {
-      signOut(auth)
+
+    const { documents: tasks } = getCollection('tasks') 
+
+    return { tasks }
+  },
+  computed: {
+    ready(){
+      return this.tasks != null
     }
-    watchEffect(() => {
-      if (!user.value) {
-        router.push('/login')
-      }
-    })
-    return { handleClick, user }
-  }
+  },
+  components: { Loggedin}
 }
 </script>
 

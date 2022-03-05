@@ -1,26 +1,31 @@
 <template>
-    <nav class="navbar NavigationMobile">
-        <div class="container-fluid navItems my-auto">
+    <nav class="navbar NavigationMobile" v-if="user">
+        <div class="container-fluid navItems px-0 my-auto">
           <ul class="">
             <router-link tag="li" to="/Dashboard"> 
-              <i class="fas  fa-1x fa-th-large">
-                <span class="mx-4">Dashboard</span>
+              <i class="fas   fa-th-large">
               </i> 
+              <span class="mx-1">Dashboard</span>
             </router-link>
             <router-link tag="li" to="/Calendar"> 
-              <i class="fas  fa-calendar-alt">
-                <span class="mx-4">Calendar</span>
+              <i class="fas  fa-calendar-alt"> 
               </i> 
+              <span class="mx-1">Calendar</span>
             </router-link>
             <router-link tag="li" to="/Teams"> 
               <i class="fas  fa-users">
-                <span class="mx-4">Teams</span>
               </i> 
+              <span class="mx-1">Teams</span>
             </router-link>
             <router-link tag="li" to="/Charts"> 
               <i class="fas  fa-chart-pie-alt">
-                <span class="mx-4">Charts</span>
               </i> 
+              <span class="mx-1">Charts</span>
+            </router-link>
+            <router-link tag="li" to="/Setting"> 
+              <i class="fas  fa-cog">
+              </i> 
+              <span class="mx-1">Setting</span>
             </router-link>
           </ul>
         </div>

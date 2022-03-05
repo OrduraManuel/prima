@@ -1,11 +1,19 @@
 
+  /*.Navigation{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;  
+    width: 10%;
+  }*/
+  
   nav {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     height: 100%;
-    padding: 9% 9%;
+    padding: 2rem 2rem;
     background-color: $bgPrimary;
     color: white;
 
@@ -17,32 +25,49 @@
     }
     .navItem{
       margin-top: 22%;
+      height: 90%;
       ul{
         display:flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-self: flex-start;
         padding-left: 0px;
-
+        height: 100%;
+        position: relative;
         i{
           font-size: 1.3rem;
         }
         a{
           display:flex;
+          flex-wrap: nowrap;
           justify-content: flex-start;
-          padding: 20px 10px;
+          padding: 1.3rem .9rem;
+          margin: .5rem 0rem;
           transition: .4s all;
           border-radius: $borderRadius;
           color: $textPrimary;
           box-shadow: $boxShadowHover;
           text-decoration: none;
-          @include delay(slideInRight, 4, .5s);
+          @include delay(slideInLeft, 5, .5s);
           &:hover{
             transition: .3s all;
             background: $bgSecondary;
             color: textColor($bgSecondary, $dark, $light);
-            padding: 15px 15px;
+            
             border-radius: $borderRadius;
             box-shadow: $boxShadow;
+          }
+          &:last-child{
+            display:flex;
+            align-items: flex-end;
+            
+          }
+          span{
+
+          }
+          .info{
+            background-color: textColor($bgSecondary, $dark, $light);
+            border-radius: 2rem;
+            color: textColor(textColor($bgSecondary, $dark, $light), $dark, $light)
           }
         }
 

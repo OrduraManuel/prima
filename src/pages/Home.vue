@@ -1,78 +1,119 @@
 <template>
-<div class="container">
+<div class="container" v-if="ready">
   <div class="row home">
     <div class="containerTasks containerForm">
-      <CreateTaskForm />
+      <p class="headingTasks mb-4">New task</p>
+      <CreateTaskMobile class="d-lg-none"/>
+      <CreateTaskForm class="d-none d-lg-block"/>
     </div>
     <div class="containerTasks containerProgress">
-      <p class="headingTasks">In Progress</p>
-      <li v-for="task in tasks" :key="task.id" v-show="!task.taskDone" class="lobbyTask">
-          <div class="forContent" v-if="!task.taskDone">
-            <div class="details d-flex">
-              <i :class="{icon: true, 'fas': task.taskDone, 'far': !task.taskDone }" 
-                  class="fa-check-square  my-auto mx-2" 
-                  @click="handleUpdate(task, 'tasks', 'taskDone')"></i>
-              <i :class="{icon: true, 'fas': task.taskPriority, 'far': !task.taskPriority }" 
-                  class="fa-circle my-auto mx-2" @click="handleUpdate(task, 'tasks', 'taskPriority')"></i>
-              <p class="ml-2" @click="testone(task)">{{ task.taskTitle }}</p>
-            </div>
-            <div class="toggling">
-              <i class="far fa-trash-alt my-auto mx-2" 
-              @click="handleDelete(task)"></i>
-            </div>
-          </div>
-      </li>
-    </div>
-    <div class="containerTasks containerDone">
-      <h6 class="headingTasks">Done</h6>
-      <li v-for="task in tasks" :key="task.id" v-show="task.taskDone" class="lobbyTask">
-        <div class="forContent"  v-if="task.taskDone">
+      <p class="headingTasks">In Progress<span>{{tasks.filter(task => task.taskDone == false).length}}</span></p>
+      <li v-for="task in taskNotDone" :key="task.id"  class="lobbyTask"  data-bs-toggle="modal" data-bs-target="#exampleModal" @click="T = task"> 
+        <div class="forContent" >
           <div class="details d-flex">
             <i :class="{icon: true, 'fas': task.taskDone, 'far': !task.taskDone }" 
                 class="fa-check-square  my-auto mx-2" 
                 @click="handleUpdate(task, 'tasks', 'taskDone')"></i>
             <i :class="{icon: true, 'fas': task.taskPriority, 'far': !task.taskPriority }" 
                 class="fa-circle my-auto mx-2" @click="handleUpdate(task, 'tasks', 'taskPriority')"></i>
-            <p class="ml-2" @click="testone(task)">{{ task.taskTitle }}</p>
+            <p class="ml-2">{{  dotDescr(task.taskTitle) }} </p>
           </div>
           <div class="toggling">
             <i class="far fa-trash-alt my-auto mx-2" 
-            @click="handleDelete(task)"></i>
+            @click.stop="handleDelete(task)"></i>
+          </div>
+        </div>
+      </li>
+    </div>
+    <div class="containerTasks containerDone">
+      <p class="headingTasks">Done <span >{{tasks.filter(task => task.taskDone == true).length}}</span></p>
+      <li v-for="task in taskDone" :key="task.id"  class="lobbyTask"  data-bs-toggle="modal" data-bs-target="#exampleModal" @click="T = task"> 
+        <div class="forContent" >
+          <div class="details d-flex">
+            <i :class="{icon: true, 'fas': task.taskDone, 'far': !task.taskDone }" 
+                class="fa-check-square  my-auto mx-2" 
+                @click="handleUpdate(task, 'tasks', 'taskDone')"></i>
+            <i :class="{icon: true, 'fas': task.taskPriority, 'far': !task.taskPriority }" 
+                class="fa-circle my-auto mx-2" @click="handleUpdate(task, 'tasks', 'taskPriority')"></i>
+            <p class="ml-2">{{  dotDescr(task.taskTitle) }} </p>
+          </div>
+          <div class="toggling">
+            <i class="far fa-trash-alt my-auto mx-2" 
+            @click.stop="handleDelete(task)"></i>
           </div>
         </div>
       </li>
     </div>
   </div>
+  <modalTask  :taskInfo="T" v-if="T  && resListener < 991" @emitTask="handleUpdate(T, 'tasks', 'taskDone')" /> 
 </div>
+
 </template>
 
 <script>
+import getCollection from '@/api/getCollection'
 
 import CreateTaskForm from '@/components/task/CreateTaskForm'
-import getCollection from '@/api/getCollection'
+import CreateTaskMobile from '@/components/task/CreateTaskMobile'
+
+import modalTask from '@/components/modalTask'
+
+
 // firebase imports
 
 import { db } from '@/api/config'
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore'
+import { ref } from 'vue'
 
 export default {
   name: 'Home',
-  components: { CreateTaskForm },
+  components: { CreateTaskForm, CreateTaskMobile, modalTask },
   computed : {
-    dotDescr(value){
-      if(value.length > 10){
-        return value.substring(0,10) + '...'
-      }else{
-        return value
+    //managed longest title
+    dotDescr(){
+      return (value) =>{
+        if(value.length > 50){
+          return value.substring(0,50) + '...'
+        }else{
+          return value
+        }
       }
     },
-    testone(el){
-      return console.log(el, 'stramonazza')
+    // 
+    ready(){
+      return this.tasks != null
+    },
+    // filtering loop DONE
+    taskDone(){
+      if(this.tasks && this.tasks.length){
+        return this.tasks.filter(task => task.taskDone)
+      }return []
+    },
+    // filtering loop NOT DONE
+    taskNotDone(){
+      if(this.tasks && this.tasks.length){
+        return this.tasks.filter(task => !task.taskDone)
+      }return []
+    }
+  },
+  methods:{
+    // resize managed
+    resizeListener(){
+      this.resListener = window.innerWidth
     }
   },
   setup() {
+    // Firestore
     const { documents: tasks } = getCollection('tasks') 
+    
+    // filtering Loop
+    const T = ref({});
 
+
+    // Resize managed
+    const resListener = ref(0);
+
+    // declaration CRUD
     const handleDelete = (task) => {
       const docRef = doc(db, 'tasks', task.id)
       deleteDoc(docRef)
@@ -93,7 +134,12 @@ export default {
       stepDocs()
     }
 
-    return {tasks, handleDelete, handleUpdate}
+    return {tasks, T,  resListener, handleDelete, handleUpdate}
+    
+  },
+  // resize managed
+  mounted(){
+    window.addEventListener("resize", this.resizeListener);
   }
 
 }

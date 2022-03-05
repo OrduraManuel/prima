@@ -1,7 +1,13 @@
 @import "home.scss";
 @import "Navigation.scss";
 @import "NavigationMobile.scss";
-
+@import "Heading";
 
 @import "task/createTaskForm.scss";
+@import "task/createTaskMobile";
 @import "task/lobbyTask.scss";
+
+@import "task/modal.scss";
+
+@import "firstLog.scss";
+@import "Loggedin.scss";

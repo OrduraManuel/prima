@@ -1,0 +1,24 @@
+.Heading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    background: $bgPrimary;
+    color: textColor($bgPrimary, $dark, $light);;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    .logo{
+        display: flex;
+        align-self: center;
+    }
+    .Loggedin{
+        background: transparent;
+        padding: 0 0;
+        button{
+            margin-left: 2rem;
+        }
+
+    }
+}

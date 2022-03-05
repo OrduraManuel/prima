@@ -4,6 +4,7 @@ import Home from "../pages/Home.vue";
 import Dashboard from "../pages/Dashboard.vue";
 import signUp from "../pages/signUp.vue";
 import logIn from "../pages/logIn.vue";
+import firstLog from "../pages/firstLog.vue";
 
 // firebase imports
 import { auth } from '@/api/config'
@@ -11,7 +12,9 @@ import { auth } from '@/api/config'
 const requireAuth = (to, from, next) => {
   let user = auth.currentUser
   if(!user) {
-    next({ name: 'logIn'})
+    next({ 
+      name: 'firstLog'
+    })
   } else {
     next()
   }
@@ -31,15 +34,22 @@ const routes = [
     component: Dashboard,
     beforeEnter: requireAuth,
   },
+  {
+    path: "/firstLog",
+    name: "firstLog",
+    component: firstLog,
+  },
     {
     path: "/signUp",
     name: "signUp",
     component: signUp,
+    beforeEnter: requireAuth,
   },
   {
     path: "/logIn",
     name: "logIn",
     component: logIn,
+    beforeEnter: requireAuth,
   },];
 
 const router = createRouter({

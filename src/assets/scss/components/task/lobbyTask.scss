@@ -6,11 +6,12 @@
         background: $bgPrimary;
         color: calcText($bgPrimary, $dark, $light);
         border-radius: $borderRadius;
-        padding: 3% 2%;
-        margin: 4% 2%;
+        padding: 2rem 1rem;
+        margin: 2rem 1rem;
         -webkit-box-shadow: $boxShadow; 
         box-shadow: $boxShadow;
         transition: all .3s ease-in-out;
+        height: 6rem;
         .forContent{
             display:flex;
             flex-direction: row;
@@ -21,6 +22,8 @@
                 margin-right: auto;
                 width: 80%;
                 p {
+                    display: flex;
+                    align-self: flex-start;
                     color: textColor($bgPrimary, $dark, $light);
                     margin: 0;
                 }
@@ -66,6 +69,18 @@
             -webkit-box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.05); 
             box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.05);
             cursor: pointer;
+        }
+    }
+    .containerDone{
+        .details {
+            margin-right: auto;
+            width: 80%;
+            p {
+                color: lighten($bgSecondary,15)!important;
+                //opacity: .5;
+                margin: 0;
+                text-decoration: line-through;
+            }
         }
     }
 

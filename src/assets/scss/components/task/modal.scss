@@ -1,0 +1,139 @@
+.modal{
+    background: rgba(0,0,0,.5);
+    .modal-dialog{
+        margin-top: 15%;
+        .modal-content{
+            background-color: darken($bgSecondary,7);
+            border-radius: $borderRadius;
+            color: textColor($bgSecondary, $dark, $light);
+            .modal-header{
+                padding: .5rem 1.7rem;
+                .taskClose{
+                    color: textColor($bgSecondary, $dark, $light)!important;
+                    background: transparent;
+                    font-size: 2rem;
+                }
+                .fa-circle{
+                    font-size: .7rem;
+                }
+                button{
+                    padding: .2rem .2rem;
+                }
+                border-bottom: 1px solid lighten($bgSecondary,7);
+            }
+            .modal-body{
+                padding: 3rem 1.7rem;
+                input{
+                    width: 100%;
+                    height: 8rem;
+                    border-radius: $borderRadius;
+                    background-color: transparent;
+                    color: $textPrimary;
+                    stroke: none;
+                    border: none;
+                    outline: none;
+                    transition: all .25s;
+                    &:active,&:focus{
+                        transition: all .25s;
+                        transform: scale(1.1)translateX(20px);
+                    }
+                }
+            }
+            .modal-footer{
+                padding: .5rem 1.7rem;
+                border-top: 0px solid transparent;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .checkPriorityM{
+                        margin-right: 4%;
+                        width: 50%;
+                        height: 50%;
+                        display:flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        input[type="checkbox"] {
+                            height: 0;
+                            width: 0;
+                            visibility: hidden;
+                            &:checked + label {
+                                background: lighten($bgSecondary, 15);
+                                &:after {
+                                    left: calc(100% - 5px);
+                                    transform: translateX(-100%);
+                                    background-color: lighten($bgSecondary,40);
+                                }
+                            }
+                        }
+                        label {
+                            cursor: pointer;
+                            text-indent: -9999px;
+                            width: 90px;
+                            height: 100%;
+                            background: $bgSecondary;
+                            display: block;
+                            border-radius: 100px;
+                            position: relative;
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                top: 0%;
+                                left: 5%;
+                                width: 43%;
+                                height: 100%;
+                                background: lighten($bgSecondary,10);
+                                border-radius: 90px;
+                                transition: 0.3s;
+                            }
+                            &:active{
+                                &:after {
+                                    width: 80%;
+                                }
+                            }
+                        }
+                    }
+            }
+            button{
+                border-radius: $borderRadius;
+                padding: 15px 15px;
+                background: $bgSecondary;
+                color: textColor($bgSecondary, $dark, $light);
+                outline: none;
+                border: none;
+                transition: all .65;
+                &:hover,&:active,&:focus{
+                    transition: all .4;
+                    background: lighten($bgSecondary, 15);
+                    color: textColor(lighten($bgSecondary, 15), $dark, $light);
+                    outline: none;
+                    stroke: none;
+                    border: none;
+                }
+            }
+            .btn-danger{
+                background: darken(red,15);
+                color: textColor(darken(red,15), $dark, $light);
+                &:hover{
+                    background: lighten(red,15);
+                    color: textColor(lighten(red,15), $dark, $light);
+                }
+            }
+            .btn-warning{
+                background: darken(orange,15);
+                color: textColor(darken(orange,15), $dark, $light);
+                &:hover{
+                    background: lighten(orange,15);
+                    color: textColor(lighten(orange,15), $dark, $light);
+                }
+            }   
+            .btn-success{
+                background: lighten(green,5);
+                color: textColor(lighten(green,5), $dark, $light);
+                &:hover{
+                    background: lighten(green,15);
+                    color: textColor(lighten(green,15), $dark, $light);
+                }
+            }           }
+    }
+
+}

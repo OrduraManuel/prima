@@ -21,9 +21,6 @@
   body {
     font-size: 15px;
   }
-  #main .filterBar {
-    font-size: 15px;
-  }
 }
 
 /* Smartphone piccole dimensioni  */
@@ -42,7 +39,7 @@
 @media only screen and (min-width: 400px) and (max-width: 481px) {
   html,
   body {
-    font-size: 10.5px;
+    font-size: 11px;
     input,
     select {
       font-size: 100%;
@@ -54,7 +51,7 @@
 @media only screen and (min-width: 481px) and (max-width: 992px) {
   html,
   body {
-    font-size: 12px;
+    font-size: 15px;
     input,
     select {
       font-size: 100%;

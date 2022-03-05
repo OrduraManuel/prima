@@ -4,6 +4,10 @@
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
+    @media only screen and ($maxMd) {
+        margin-top: 10vh;
+        margin-bottom: 10vh;
+      }
     .containerTasks {
         padding: 1rem 0;
         .headingTasks{
@@ -14,6 +18,14 @@
             align-items: flex-start;
             justify-content: flex-start;
             color: textColor($bgSecondary, $dark, $light);
+            span{
+                border-radius:50%;
+                width: 2rem; 
+                height: 2rem;
+                margin-left: 1rem;
+                background: $light;
+                color: textColor($light, $dark, $light);
+            }
         }
     }
 }

@@ -1,0 +1,33 @@
+.firstLog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .logIn,.signUp{
+        margin: 4rem 2rem;
+    }
+    form{
+        background: $bgPrimary;
+        color: textColor($bgPrimary,$dark,$light);
+        padding: 1rem 3rem;
+        padding-top: 2rem;
+        margin: 1rem 2rem;
+        border-radius: $borderRadius;
+        display:flex;
+        flex-direction: column;
+        max-width: 30rem;
+        width: 25rem;
+        
+
+        button{
+            margin: 2rem 2rem;
+            border-radius: $borderRadius;
+            padding: .5rem 2rem;
+            align-self: center;
+            width: 8rem;
+            background: $bgSecondary;
+            color: textColor($bgSecondary,$dark,$light);
+            border: none;
+        }
+    }
+}

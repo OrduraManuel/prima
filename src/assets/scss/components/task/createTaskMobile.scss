@@ -1,0 +1,13 @@
+.createTaskMobile{
+    background: darken($bgSecondary, 10);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: $borderRadius;
+    height: 6rem;
+    
+    p,i{
+        color: textColor($bgSecondary, $dark, $light);
+        font-size: 1.4rem;
+    }
+}

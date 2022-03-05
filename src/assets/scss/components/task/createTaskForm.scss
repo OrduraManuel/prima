@@ -1,5 +1,5 @@
-form {
-    padding: 1% 1%;
+.createTaskForm {
+    padding: .5rem .5rem;
     margin-top: 10px;
     border-radius: $borderRadius;
     background-color: $bgPrimary;
@@ -45,8 +45,8 @@ form {
             transition: all .65;
             &:hover,&:active,&:focus{
                 transition: all .4;
-                background: $textPrimary;
-                color: textColor($textPrimary, $dark, $light);
+                background: lighten($bgSecondary, 15);
+                color: textColor(lighten($bgSecondary, 15), $dark, $light);
                 outline: none;
                 stroke: none;
                 border: none;
@@ -60,17 +60,18 @@ form {
             align-items: center;
             justify-content: space-around;
             span{
-                
+
             }
-            input[type="checkbox"] {
+            input[type="checkbox"]{
                 height: 0;
                 width: 0;
                 visibility: hidden;
                 &:checked + label {
-                    background: darken(red, 15);
+                    background: lighten($bgSecondary, 15);
                     &:after {
                         left: calc(100% - 5px);
                         transform: translateX(-100%);
+                        background-color: lighten($bgSecondary,40);
                     }
                 }
             }
@@ -90,7 +91,7 @@ form {
                     left: 5%;
                     width: 43%;
                     height: 100%;
-                    background: $textPrimary;
+                    background: lighten($bgSecondary,10);
                     border-radius: 90px;
                     transition: 0.3s;
                 }
