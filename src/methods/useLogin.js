@@ -16,7 +16,7 @@ const login = async (email, password) => {
     if (!res) {
       throw new Error('Could not login')
     }
-    
+
     error.value = null
     isPending.value = false
   }

@@ -1,8 +1,9 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
+import { config } from '../interfaces/interfaces'
 
-const firebaseConfig = {
+const firebaseConfig: config = {
   apiKey: "AIzaSyA968KyLiTn82CjPtrzKajH5EEsVbyd3MQ",
   authDomain: "todolist-d33ca.firebaseapp.com",
   projectId: "todolist-d33ca",

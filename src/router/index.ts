@@ -7,12 +7,12 @@ import logIn from "../pages/logIn.vue";
 import firstLog from "../pages/firstLog.vue";
 
 // firebase imports
-import { auth } from '@/api/config'
+import { auth } from '../../src/api/config'
 
 const requireAuth = (to, from, next) => {
   let user = auth.currentUser
   if(!user) {
-    next({ 
+    next({
       name: 'firstLog'
     })
   } else {

@@ -1,7 +1,7 @@
 import { ref, watchEffect } from 'vue'
 
 // firebase imports
-import { db } from '@/api/config'
+import { db } from '../../src/api/config'
 import { collection, onSnapshot } from 'firebase/firestore'
 
 const getCollection = (c) => {
@@ -15,7 +15,6 @@ const getCollection = (c) => {
     snapshot.docs.forEach(doc => {
       results.push({ ...doc.data(), id: doc.id })
     })
-    
     // update values
     documents.value = results
   })

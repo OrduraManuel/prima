@@ -4,8 +4,9 @@ import router from './router'
 
 
 // firebase imports
-import { auth } from '@/api/config'
+import { auth } from '../src/api/config'
 import { onAuthStateChanged } from 'firebase/auth'
+import "bootstrap/dist/css/bootstrap.min.css"
 
 let app
 
@@ -14,4 +15,3 @@ onAuthStateChanged(auth, () => {
     app = createApp(App).use(router).mount('#app')
   }
 })
-
