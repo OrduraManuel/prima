@@ -10,15 +10,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Navigation from './components/Navigation.vue'
 import NavigationMobile from './components/NavigationMobile.vue'
 import Heading from './components/Heading.vue'
 
 export default {
   data() {
-    return{
-      mobile: null,
+    return {
+      mobile: Number = null,
     }
   },
   components: {
@@ -26,13 +26,15 @@ export default {
     NavigationMobile,
     Heading
   },
-  created(){
+  created() {
+    /*  */
   },
   methods: {
+    /*  */
   }
 
 };
 </script>
 <style lang="scss">
-@import "@/assets/scss/style.scss";
+  @import "./src/assets/scss/style.scss";
 </style>
