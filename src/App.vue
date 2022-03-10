@@ -22,9 +22,9 @@ export default {
     }
   },
   components: {
-  Navigation,
-  NavigationMobile,
-  Heading
+    Navigation,
+    NavigationMobile,
+    Heading
   },
   created(){
   },

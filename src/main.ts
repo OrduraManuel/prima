@@ -4,11 +4,11 @@ import router from './router'
 
 
 // firebase imports
-import { auth } from '../src/api/config'
+import { auth } from './api/config'
 import { onAuthStateChanged } from 'firebase/auth'
 import "bootstrap/dist/css/bootstrap.min.css"
 
-let app
+let app: any;
 
 onAuthStateChanged(auth, () => {
   if (!app) {

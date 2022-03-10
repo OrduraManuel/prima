@@ -2,19 +2,19 @@ import { ref } from 'vue'
 
 // firebase imports
 import { auth } from '../api/config'
-import { signInWithEmailAndPassword  } from 'firebase/auth'
+import { createUserWithEmailAndPassword  } from 'firebase/auth'
 
 const error = ref(null)
 const isPending = ref(false)
 
-const login = async (email, password) => {
+const signup = async (email: any, password: any) => {
   error.value = null
   isPending.value = true
 
   try {
-    const res = await signInWithEmailAndPassword(auth, email, password)
+    const res = await createUserWithEmailAndPassword(auth, email, password)
     if (!res) {
-      throw new Error('Could not login')
+      throw new Error('Could not complete signup')
     }
 
     error.value = null
@@ -27,8 +27,8 @@ const login = async (email, password) => {
   }
 }
 
-const uselogin = () => {
-  return { error, login, isPending }
+const useSignup = () => {
+  return { error, isPending, signup }
 }
 
-export default uselogin
+export default useSignup

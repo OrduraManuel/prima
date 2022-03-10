@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import getUser from '@/methods/getUser'
 
 // firebase imports
@@ -33,26 +33,26 @@ export default class CreateTaskForm {
     const { user } = getUser()
 
     const data = reactive({
-      taskTitle: String;
-      taskPriority = String,
-      taskDone = String
-    })
+      taskTitle: String,
+      taskPriority: String,
+      taskDone: Boolean
+    });
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
       e.preventDefault()
       const colRef = collection(db, 'tasks')
       await addDoc( colRef, {
-        taskTitle: data.taskTitle.value,
-        taskPriority: taskPriority.value,
+        taskTitle: data?.taskTitle?.value,
+        taskPriority: data?.taskPriority?.value,
         taskDone: false,
-        userUid: user.value.uid
+        userUid: user?.value?.uid
       })
 
       // reset the form
-      data.taskTitle.value: String = '';
-      data.taskPriority.value: Boolean = false;
+      data?.taskTitle?.value = '';
+      data?.taskPriority?.value = false;
     }
-    return { handleSubmit, data, user}
+    return { handleSubmit, data, user }
   }
 }
 </script>

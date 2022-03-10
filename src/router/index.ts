@@ -9,7 +9,7 @@ import firstLog from "../pages/firstLog.vue";
 // firebase imports
 import { auth } from '../../src/api/config'
 
-const requireAuth = (to, from, next) => {
+const requireAuth = (to: any, from: any, next: any) => {
   let user = auth.currentUser
   if(!user) {
     next({

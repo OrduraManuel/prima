@@ -79,7 +79,7 @@ export default {
         }
       }
     },
-    // 
+    //
     ready(){
       return this.tasks != null
     },
@@ -104,8 +104,7 @@ export default {
   },
   setup() {
     // Firestore
-    const { documents: tasks } = getCollection('tasks') 
-    
+    const { documents: tasks } = getCollection('tasks')
     // filtering Loop
     const T = ref({});
 
@@ -122,11 +121,11 @@ export default {
       const docRef = doc(db, matrice, cutMatrice.id) // docRef di Firebase db (importato) + dbMatrice + idMatrice
       function stepDocs(){
         if(args == 'taskPriority'){
-          updateDoc(docRef , { 
+          updateDoc(docRef , {
             taskPriority: !cutMatrice.taskPriority
           })
         }if(args == 'taskDone'){
-          updateDoc(docRef , { 
+          updateDoc(docRef , {
             taskDone: !cutMatrice.taskDone
           })
         }else(console.log('nient'))
@@ -135,7 +134,6 @@ export default {
     }
 
     return {tasks, T,  resListener, handleDelete, handleUpdate}
-    
   },
   // resize managed
   mounted(){
