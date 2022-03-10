@@ -18,7 +18,7 @@ import Heading from './components/Heading.vue'
 export default {
   data() {
     return {
-      mobile: Number = null,
+      mobile: null
     }
   },
   components: {

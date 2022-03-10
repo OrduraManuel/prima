@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword  } from 'firebase/auth'
 const error = ref(null)
 const isPending = ref(false)
 
-const signup = async (email: any, password: any) => {
+const signup = async (email: string, password: string) => {
   error.value = null
   isPending.value = true
 

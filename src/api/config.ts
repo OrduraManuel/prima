@@ -1,9 +1,9 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
-import { config } from '../interfaces/interfaces'
+import { configFB } from '../interfaces/interfaces'
 
-const firebaseConfig: config = {
+const firebaseConfig: configFB = {
   apiKey: "AIzaSyA968KyLiTn82CjPtrzKajH5EEsVbyd3MQ",
   authDomain: "todolist-d33ca.firebaseapp.com",
   projectId: "todolist-d33ca",
@@ -16,7 +16,7 @@ const firebaseConfig: config = {
 initializeApp(firebaseConfig)
 
 // init services
-var db = getFirestore()
+let db = getFirestore()
 
 // init auth
 const auth = getAuth()

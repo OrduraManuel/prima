@@ -26,4 +26,4 @@ const getCollection = (c: any) => {
   return { documents }
 }
 
-export default getCollection
+export default getCollection;
