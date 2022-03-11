@@ -1,4 +1,5 @@
 module.exports = {
+  lintOnSave: process.env.NODE_ENV !== 'production',
   publicPath: process.env.VUE_APP_BASE_URL,
   runtimeCompiler: true,
   productionSourceMap: false,

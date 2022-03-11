@@ -18,8 +18,8 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue'
+<script lang="ts">
+import { ref, Ref } from 'vue'
 import getUser from '@/methods/getUser'
 
 // firebase imports
@@ -31,25 +31,25 @@ import { addDoc, collection} from 'firebase/firestore'
 export default class CreateTaskForm {
   setup() {
     const { user } = getUser()
-    const taskTitle = ref('')
-    const taskPriority = ref('')
-    const taskDone = ref('')
+    const taskTitle: Ref<string> = ref('')
+    const taskPriority: Ref<boolean> = ref(false)
+    const taskDone: Ref<boolean> = ref(false)
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
       e.preventDefault()
       const colRef = collection(db, 'tasks')
       await addDoc( colRef, {
         taskTitle: taskTitle.value,
         taskPriority: taskPriority.value,
         taskDone: false,
-        userUid: user.value.uid
+        userUid: user.value?.uid
       })
 
       // reset the form
       taskTitle.value = ''
       taskPriority.value = false
     }
-    return { handleSubmit, taskTitle, taskPriority, taskDone, user}
+    return { handleSubmit, taskTitle, taskPriority, taskDone, user }
   }
 }
 </script>
